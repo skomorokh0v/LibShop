@@ -63,21 +63,23 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DockPanel Grid.Row="2" Margin="0,8,0,0">
-                    <Button DockPanel.Dock="Left" Content="Добавить"
+                <!-- Кнопки управления книгами: WrapPanel переносит кнопки
+                     на новую строку, если окно недостаточно широкое -->
+                <WrapPanel Grid.Row="2" Margin="0,8,0,0">
+                    <Button Content="Добавить"
                             Style="{StaticResource AppButton}"
                             Click="AddBookButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Редактировать"
+                    <Button Content="Редактировать"
                             Style="{StaticResource AppLogoutButton}"
                             Click="EditBookButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Удалить"
+                    <Button Content="Удалить"
                             Style="{StaticResource AppLogoutButton}"
                             ToolTip="Удаление книги удаляет связанные заказы (каскадно)"
                             Click="DeleteBookButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Обновить"
+                    <Button Content="Обновить"
                             Style="{StaticResource AppLogoutButton}"
                             Click="RefreshBooks_Click" />
-                </DockPanel>
+                </WrapPanel>
             </Grid>
         </TabItem>
 
@@ -131,22 +133,23 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DockPanel Grid.Row="2" Margin="0,8,0,0">
-                    <Button DockPanel.Dock="Left" Content="Добавить"
+                <!-- Кнопки управления пользователями: переносятся при нехватке ширины -->
+                <WrapPanel Grid.Row="2" Margin="0,8,0,0">
+                    <Button Content="Добавить"
                             Style="{StaticResource AppButton}"
                             Click="AddUserButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Редактировать"
+                    <Button Content="Редактировать"
                             Style="{StaticResource AppLogoutButton}"
                             ToolTip="Пустое поле пароля — пароль не меняется"
                             Click="EditUserButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Удалить"
+                    <Button Content="Удалить"
                             Style="{StaticResource AppLogoutButton}"
                             ToolTip="Удаление пользователя удаляет его заказы (каскадно)"
                             Click="DeleteUserButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Обновить"
+                    <Button Content="Обновить"
                             Style="{StaticResource AppLogoutButton}"
                             Click="RefreshUsers_Click" />
-                </DockPanel>
+                </WrapPanel>
             </Grid>
         </TabItem>
 
@@ -201,22 +204,23 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DockPanel Grid.Row="2" Margin="0,8,0,0">
-                    <Button DockPanel.Dock="Left" Content="Оплатить"
+                <!-- Кнопки управления заказами: переносятся при нехватке ширины -->
+                <WrapPanel Grid.Row="2" Margin="0,8,0,0">
+                    <Button Content="Оплатить"
                             Style="{StaticResource AppButton}"
                             ToolTip="Отметить выбранный заказ оплаченным"
                             Click="PayOrderButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Отменить"
+                    <Button Content="Отменить"
                             Style="{StaticResource AppLogoutButton}"
                             Click="CancelOrderButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Удалить"
+                    <Button Content="Удалить"
                             Style="{StaticResource AppLogoutButton}"
                             ToolTip="Удалить выбранный заказ"
                             Click="DeleteOrderButton_Click" />
-                    <Button DockPanel.Dock="Left" Content="Обновить"
+                    <Button Content="Обновить"
                             Style="{StaticResource AppLogoutButton}"
                             Click="RefreshOrders_Click" />
-                </DockPanel>
+                </WrapPanel>
             </Grid>
         </TabItem>
 
