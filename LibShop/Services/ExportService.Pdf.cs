@@ -12,6 +12,11 @@ public static partial class ExportService
     {
         QuestPDF.Settings.License = LicenseType.Community;
 
+        // С версии QuestPDF 2026.9.0 по умолчанию используются только встроенные шрифты (Lato),
+        // в которых нет знака рубля (₽, U+20BD) из заголовков отчёта — генерация падала бы
+        // с DocumentDrawingException. Системные шрифты Windows (Segoe UI и др.) содержат и ₽, и кириллицу.
+        QuestPDF.Settings.UseSystemFonts = true;
+
         Document.Create(container =>
         {
             container.Page(page =>
