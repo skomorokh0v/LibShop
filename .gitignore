@@ -1,0 +1,26 @@
+### Build/output
+[Bb]in/
+[Oo]bj/
+LibShop/*.user
+LibShop/*.suo
+LibShop/*.cache
+LibShop.slnx.vs!
+.vs/
+
+### NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/repositories.config
+
+### IDE
+.idea/
+*.csproj.user
+
+### OS
+.DS_Store
+Thumbs.db
+
+### App settings
+*.txt
+!db/*.sql
+!README.md

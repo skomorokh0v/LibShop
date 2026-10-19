@@ -1,0 +1,170 @@
+<Page x:Class="LibShop.Pages.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:LibShop"
+      mc:Ignorable="d"
+      Title="Каталог книг"
+      FontFamily="{StaticResource AppFont}"
+      Loaded="Page_Loaded">
+    <TabControl Style="{StaticResource MaterialDesignTabControl}"
+                Margin="8">
+
+        <!-- ==================== Каталог книг ==================== -->
+        <TabItem Header="Каталог книг">
+            <Grid Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Поиск, сортировка, фильтрация -->
+                <WrapPanel Grid.Row="0" Margin="0,0,0,8">
+
+                    <TextBox x:Name="SearchTextBox"
+                             Style="{StaticResource AppSearchBox}"
+                             materialDesign:HintAssist.Hint="Поиск по названию/автору"
+                             ToolTip="Введите часть названия или автора — список отфильтруется"
+                             TextChanged="Filters_Changed" />
+
+                    <ComboBox x:Name="GenreComboBox"
+                              Style="{StaticResource AppComboBox}"
+                              Width="190"
+                              materialDesign:HintAssist.Hint="Жанр"
+                              ToolTip="Фильтр по жанру"
+                              SelectionChanged="Filters_Changed" />
+
+                    <ComboBox x:Name="SortComboBox"
+                              Style="{StaticResource AppComboBox}"
+                              Width="230"
+                              materialDesign:HintAssist.Hint="Сортировка"
+                              ToolTip="Сортировка списка книг"
+                              SelectionChanged="Filters_Changed" />
+
+                    <CheckBox x:Name="InStockCheckBox"
+                              VerticalAlignment="Center"
+                              Margin="8,0"
+                              Content="Только в наличии"
+                              ToolTip="Показать только книги, которые есть на складе"
+                              Checked="Filters_Changed"
+                              Unchecked="Filters_Changed" />
+
+                    <Button Content="Сбросить"
+                            Style="{StaticResource AppLogoutButton}"
+                           
+                            Click="ResetFilters_Click" />
+                </WrapPanel>
+
+                <!-- Таблица книг -->
+                <DataGrid x:Name="BooksGrid"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal"
+                          MouseDoubleClick="BooksGrid_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="2*" />
+                        <DataGridTextColumn Header="Автор" Binding="{Binding Author}" Width="*" />
+                        <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" Width="*" />
+                        <DataGridTextColumn Header="Издательство" Binding="{Binding Publisher}" Width="*" />
+                        <DataGridTextColumn Header="Год" Binding="{Binding PublicationYear}" Width="75" />
+                        <DataGridTextColumn Header="Цена, ₽" Binding="{Binding Price, StringFormat={}{0:F2}}" Width="90" />
+                        <DataGridTextColumn Header="В наличии" Binding="{Binding Quantity}" Width="100" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Оформление покупки -->
+                <DockPanel Grid.Row="2" Margin="0,8,0,0">
+                    <TextBlock DockPanel.Dock="Left"
+                               VerticalAlignment="Center"
+                               Margin="4"
+                               Text="Количество:" />
+                    <TextBox x:Name="QuantityTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             Width="90" Margin="4"
+                             Text="1"
+                             ToolTip="Количество покупаемых экземпляров (целое число от 1 до 100)"
+                             PreviewTextInput="DigitsOnly_PreviewTextInput" />
+                    <Button DockPanel.Dock="Left"
+                            Content="Купить"
+                            Style="{StaticResource AppButton}"
+                           
+                            ToolTip="Оформить покупку выбранной книги"
+                            Click="BuyButton_Click" />
+                    <TextBlock VerticalAlignment="Center" Margin="12,4"
+                               Style="{StaticResource AppHint}"
+                               Text="Двойной клик по строке — быстрая покупка." />
+                </DockPanel>
+            </Grid>
+        </TabItem>
+
+        <!-- ==================== Мои заказы ==================== -->
+        <TabItem Header="Мои заказы">
+            <Grid Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <WrapPanel Grid.Row="0" Margin="0,0,0,8">
+                    <TextBox x:Name="OrderSearchTextBox"
+                             Style="{StaticResource AppSearchBox}"
+                             materialDesign:HintAssist.Hint="Поиск по названию книги"
+                             TextChanged="Orders_FilterChanged" />
+                    <ComboBox x:Name="OrderStatusComboBox"
+                              Style="{StaticResource AppComboBox}"
+                              Width="190"
+                              materialDesign:HintAssist.Hint="Статус"
+                              ToolTip="Фильтр по статусу заказа"
+                              SelectionChanged="Orders_FilterChanged" />
+                    <Button Content="Обновить"
+                            Style="{StaticResource AppLogoutButton}"
+                           
+                            Click="RefreshOrders_Click" />
+                </WrapPanel>
+
+                <DataGrid x:Name="OrdersGrid"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№" Binding="{Binding Id}" Width="50" />
+                        <DataGridTextColumn Header="Книга" Binding="{Binding Book.Title}" Width="2*" />
+                        <DataGridTextColumn Header="Автор" Binding="{Binding Book.Author}" Width="*" />
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Quantity}" Width="70" />
+                        <DataGridTextColumn Header="Цена, ₽" Binding="{Binding UnitPrice, StringFormat={}{0:F2}}" Width="90" />
+                        <DataGridTextColumn Header="Сумма, ₽" Binding="{Binding TotalPrice, StringFormat={}{0:F2}}" Width="100" />
+                        <DataGridTextColumn Header="Дата" Binding="{Binding OrderDate, StringFormat=dd.MM.yyyy HH:mm}" Width="130" />
+                        <DataGridTextColumn Header="Статус" Binding="{Binding StatusDescription}" Width="110" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DockPanel Grid.Row="2" Margin="0,8,0,0">
+                    <Button DockPanel.Dock="Left"
+                            Content="Отменить заказ"
+                            Style="{StaticResource AppLogoutButton}"
+                           
+                            ToolTip="Отменить выбранный заказ (если он не отменён)"
+                            Click="CancelOrderButton_Click" />
+                    <TextBlock VerticalAlignment="Center" Margin="12,4"
+                               Style="{StaticResource AppHint}"
+                               Text="Отмена возможна для заказов в статусах «Ожидает оплаты» и «Оплачен»." />
+                </DockPanel>
+            </Grid>
+        </TabItem>
+
+    </TabControl>
+</Page>

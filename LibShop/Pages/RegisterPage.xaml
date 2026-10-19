@@ -1,0 +1,79 @@
+﻿<Page x:Class="LibShop.Pages.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:LibShop"
+      mc:Ignorable="d"
+      Title="Регистрация"
+      FontFamily="{StaticResource AppFont}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="460" HorizontalAlignment="Center" Margin="0,30,0,30">
+
+            <materialDesign:Card Padding="24">
+                <StackPanel>
+
+                    <TextBlock Text="Регистрация нового пользователя"
+                               Style="{StaticResource AppSectionTitle}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Style="{StaticResource AppHint}" Margin="4,0,4,12"
+                               Text="Логин — латиница, цифры и «_», 3–20 символов. Пароль — минимум 6 символов, содержит хотя бы одну букву и одну цифру." />
+
+                    <TextBox x:Name="LoginTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             materialDesign:HintAssist.Hint="Логин"
+                             ToolTip="Логин: латиница, цифры и «_», от 3 до 20 символов"
+                             MaxLength="20"
+                             PreviewTextInput="LettersDigits_PreviewTextInput" />
+
+                    <PasswordBox x:Name="PasswordBox"
+                                 Style="{StaticResource AppPasswordBox}"
+                                 materialDesign:HintAssist.Hint="Пароль" />
+
+                    <PasswordBox x:Name="ConfirmPasswordBox"
+                                 Style="{StaticResource AppPasswordBox}"
+                                 materialDesign:HintAssist.Hint="Повторите пароль" />
+
+                    <TextBox x:Name="FullNameTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             materialDesign:HintAssist.Hint="Фамилия и имя"
+                             ToolTip="Например: Иванов Иван"
+                             MaxLength="100"
+                             PreviewTextInput="Name_PreviewTextInput" />
+
+                    <TextBox x:Name="EmailTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             materialDesign:HintAssist.Hint="Электронная почта (необязательно)"
+                             ToolTip="Например: user@mail.ru"
+                             MaxLength="100" />
+
+                    <TextBox x:Name="PhoneTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             materialDesign:HintAssist.Hint="Телефон (необязательно)"
+                             ToolTip="Формат: +7XXXXXXXXXX (только цифры и знак +)"
+                             MaxLength="16"
+                             PreviewTextInput="Phone_PreviewTextInput" />
+
+                    <TextBlock x:Name="ErrorText"
+                               Style="{StaticResource AppValidationError}"
+                               Margin="4,8,4,0" />
+
+                    <Button Content="Зарегистрироваться"
+                            Style="{StaticResource AppButton}"
+                            HorizontalAlignment="Center"
+                            Margin="4,16,4,4"
+                            Click="RegisterButton_Click" />
+
+                    <Button Content="Назад к авторизации"
+                            Style="{StaticResource AppLogoutButton}"
+                            HorizontalAlignment="Center"
+                            Click="BackButton_Click" />
+
+                </StackPanel>
+            </materialDesign:Card>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

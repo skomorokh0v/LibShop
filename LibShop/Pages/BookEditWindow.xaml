@@ -1,0 +1,89 @@
+﻿<Window x:Class="LibShop.Pages.BookEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Книга"
+        Height="560" Width="440"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        FontFamily="{StaticResource AppFont}">
+    <StackPanel Margin="16">
+
+        <TextBlock x:Name="TitleLabel"
+                   Text="Добавление книги"
+                   Style="{StaticResource AppSectionTitle}"
+                   HorizontalAlignment="Center" />
+
+        <TextBox x:Name="TitleTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Название *"
+                 ToolTip="Название книги (обязательно, до 200 символов)"
+                 MaxLength="200" />
+
+        <TextBox x:Name="AuthorTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Автор *"
+                 ToolTip="Автор книги (обязательно, до 100 символов)"
+                 MaxLength="100" />
+
+        <TextBox x:Name="GenreTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Жанр *"
+                 ToolTip="Жанр книги (обязательно, до 50 символов)"
+                 MaxLength="50" />
+
+        <TextBox x:Name="PublisherTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Издательство"
+                 ToolTip="Издательство (необязательно, до 100 символов)"
+                 MaxLength="100" />
+
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="YearTextBox"
+                     Style="{StaticResource AppTextBox}"
+                     Width="130"
+                     materialDesign:HintAssist.Hint="Год издания *"
+                     ToolTip="Год издания: целое число от 1000 до 2100"
+                     MaxLength="4"
+                     PreviewTextInput="DigitsOnly_PreviewTextInput" />
+            <TextBox x:Name="PriceTextBox"
+                     Style="{StaticResource AppTextBox}"
+                     Width="130"
+                     materialDesign:HintAssist.Hint="Цена, ₽ *"
+                     ToolTip="Цена: до 2 знаков после запятой, от 0 до 1 000 000"
+                     MaxLength="12"
+                     PreviewTextInput="Price_PreviewTextInput" />
+            <TextBox x:Name="QuantityTextBox"
+                     Style="{StaticResource AppTextBox}"
+                     Width="130"
+                     materialDesign:HintAssist.Hint="Кол-во *"
+                     ToolTip="Количество экземпляров: целое число от 0 до 100000"
+                     MaxLength="6"
+                     PreviewTextInput="DigitsOnly_PreviewTextInput" />
+        </StackPanel>
+
+        <TextBox x:Name="DescriptionTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 Height="80"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 materialDesign:HintAssist.Hint="Описание"
+                 ToolTip="Краткое описание книги (необязательно, до 1000 символов)"
+                 MaxLength="1000" />
+
+        <TextBlock x:Name="ErrorText"
+                   Style="{StaticResource AppValidationError}"
+                   Margin="4,8,4,0" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
+            <Button Content="Сохранить"
+                    Style="{StaticResource AppButton}"
+                    Click="SaveButton_Click" />
+            <Button Content="Отмена"
+                    Style="{StaticResource AppLogoutButton}"
+                    Click="CancelButton_Click" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>

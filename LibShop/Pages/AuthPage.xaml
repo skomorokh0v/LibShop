@@ -1,0 +1,93 @@
+﻿<Page x:Class="LibShop.Pages.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:LibShop"
+      mc:Ignorable="d"
+      Title="Авторизация"
+      FontFamily="{StaticResource AppFont}"
+      Loaded="Page_Loaded">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="460" HorizontalAlignment="Center" Margin="0,30,0,30">
+
+            <materialDesign:Card Padding="24">
+                <StackPanel>
+
+                    <TextBlock Text="Вход в систему"
+                               Style="{StaticResource AppSectionTitle}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Text="Введите логин и пароль. После нескольких неудачных попыток потребуется ввод капчи."
+                               Style="{StaticResource AppHint}"
+                               Margin="4,0,4,12" />
+
+                    <!-- Логин -->
+                    <TextBox x:Name="LoginTextBox"
+                             Style="{StaticResource AppTextBox}"
+                             materialDesign:HintAssist.Hint="Логин"
+                             ToolTip="Логин: латиница, цифры и знак «_», от 3 до 20 символов"
+                             MaxLength="20"
+                             PreviewTextInput="Login_PreviewTextInput"
+                             TextChanged="LoginTextBox_TextChanged" />
+
+                    <!-- Пароль -->
+                    <PasswordBox x:Name="PasswordBox"
+                                 Style="{StaticResource AppPasswordBox}"
+                                 materialDesign:HintAssist.Hint="Пароль"
+                                 ToolTip="Пароль, указанный при регистрации"
+                                 PasswordChanged="PasswordBox_Changed" />
+
+                    <!-- Блок капчи (появляется после неудачных попыток) -->
+                    <StackPanel x:Name="CaptchaPanel" Visibility="Collapsed"
+                                Margin="4,8,4,0">
+                        <TextBlock Text="Подтвердите, что вы не робот:"
+                                   Style="{StaticResource AppHint}" />
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    ToolTip="Обновить капчу"
+                                    Width="44" Height="44" Margin="4"
+                                    Click="RefreshCaptcha_Click">
+                                <materialDesign:PackIcon Kind="Refresh" Width="22" Height="22" />
+                            </Button>
+                            <Image x:Name="CaptchaImage"
+                                   Height="50" Stretch="Uniform"
+                                   Margin="4" />
+                        </DockPanel>
+                        <TextBox x:Name="CaptchaTextBox"
+                                 Style="{StaticResource AppTextBox}"
+                                 materialDesign:HintAssist.Hint="Код с картинки"
+                                 ToolTip="Введите символы, изображённые на картинке (регистр не важен)"
+                                 MaxLength="5"
+                                 PreviewTextInput="Login_PreviewTextInput" />
+                    </StackPanel>
+
+                    <!-- Сообщение об ошибке / блокировке -->
+                    <TextBlock x:Name="ErrorText"
+                               Style="{StaticResource AppValidationError}"
+                               Margin="4,8,4,0" />
+
+                    <Button Content="Войти"
+                            Style="{StaticResource AppButton}"
+                            HorizontalAlignment="Center"
+                            Margin="4,16,4,4"
+                            Click="LoginButton_Click" />
+
+                    <Button Content="Зарегистрироваться"
+                            Style="{StaticResource AppLogoutButton}"
+                            HorizontalAlignment="Center"
+                            Click="RegisterButton_Click" />
+
+                </StackPanel>
+            </materialDesign:Card>
+
+            <TextBlock Style="{StaticResource AppHint}"
+                       HorizontalAlignment="Center"
+                       Margin="0,16,0,0"
+                       Text="Демонстрационные учётные записи: admin / Admin123! (администратор), user / User12345 (пользователь)" />
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

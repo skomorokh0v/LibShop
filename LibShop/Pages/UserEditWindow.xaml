@@ -1,0 +1,66 @@
+﻿<Window x:Class="LibShop.Pages.UserEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Пользователь"
+        Height="480" Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        FontFamily="{StaticResource AppFont}">
+    <StackPanel Margin="16">
+
+        <TextBlock x:Name="TitleLabel"
+                   Text="Добавление пользователя"
+                   Style="{StaticResource AppSectionTitle}"
+                   HorizontalAlignment="Center" />
+
+        <TextBox x:Name="LoginTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Логин *"
+                 ToolTip="Логин: латиница, цифры и «_», 3–20 символов"
+                 MaxLength="20"
+                 PreviewTextInput="LettersDigits_PreviewTextInput" />
+
+        <PasswordBox x:Name="PasswordBox"
+                     Style="{StaticResource AppPasswordBox}"
+                     materialDesign:HintAssist.Hint="Пароль *"
+                     ToolTip="Пароль: минимум 6 символов, содержит букву и цифру" />
+
+        <TextBox x:Name="FullNameTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Фамилия и имя *"
+                 ToolTip="Например: Иванов Иван"
+                 MaxLength="100"
+                 PreviewTextInput="Name_PreviewTextInput" />
+
+        <TextBox x:Name="EmailTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Электронная почта"
+                 MaxLength="100" />
+
+        <TextBox x:Name="PhoneTextBox"
+                 Style="{StaticResource AppTextBox}"
+                 materialDesign:HintAssist.Hint="Телефон (цифры и «+»)"
+                 MaxLength="16"
+                 PreviewTextInput="Phone_PreviewTextInput" />
+
+        <ComboBox x:Name="RoleComboBox"
+                  Style="{StaticResource AppComboBox}"
+                  materialDesign:HintAssist.Hint="Роль *"
+                  ToolTip="Роль пользователя в системе" />
+
+        <TextBlock x:Name="ErrorText"
+                   Style="{StaticResource AppValidationError}"
+                   Margin="4,8,4,0" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
+            <Button Content="Сохранить"
+                    Style="{StaticResource AppButton}"
+                    Click="SaveButton_Click" />
+            <Button Content="Отмена"
+                    Style="{StaticResource AppLogoutButton}"
+                    Click="CancelButton_Click" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>
