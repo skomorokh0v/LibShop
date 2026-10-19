@@ -70,7 +70,7 @@
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Height="36" MinWidth="44" Margin="2"
                             Foreground="White"
-                            Background="#4527A0"
+                            Background="#193D57"
                             ToolTip="Выйти из системы"
                             Click="LogoutButton_Click">
                         <materialDesign:PackIcon Kind="Logout" Width="20" Height="20" />

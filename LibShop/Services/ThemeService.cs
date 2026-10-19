@@ -27,9 +27,9 @@ public static class ThemeService
         CurrentTheme = theme;
 
         if (Application.Current.Resources.MergedDictionaries
-                .OfType<BundledTheme>().FirstOrDefault() is { } bundled)
+                .OfType<CustomColorTheme>().FirstOrDefault() is { } themeDictionary)
         {
-            bundled.BaseTheme = theme;
+            themeDictionary.BaseTheme = theme;
         }
 
         if (persist)

@@ -7,11 +7,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Начальная тема Material Design 3 (светлая; переключается в рантайме) -->
-                <materialDesign:BundledTheme BaseTheme="Light"
-                                             ColorAdjustment="{materialDesign:ColorAdjustment}"
-                                             PrimaryColor="DeepPurple"
-                                             SecondaryColor="Lime" />
+                <!-- Начальная тема Material Design 3 (светлая; переключается в рантайме).
+                     Палитра LibShop: основной #0198AF, дополнительные #275E9F и #193D57. -->
+                <materialDesign:CustomColorTheme BaseTheme="Light"
+                                                 ColorAdjustment="{materialDesign:ColorAdjustment}"
+                                                 PrimaryColor="#0198AF"
+                                                 SecondaryColor="#275E9F" />
                 <!-- Стандартные стили элементов управления -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <!-- Собственный словарь стилей приложения -->
